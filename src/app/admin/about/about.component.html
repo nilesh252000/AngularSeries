@@ -1,0 +1,156 @@
+<h1>Projects</h1>
+<div class="row">
+  <div class="col-8 mx-auto">
+    <button class="btn btn-primary" data-toggle="modal" data-target="#newModal">Create Project</button>
+  </div>
+  <div class="col-8 mx-auto">
+    <table class="table">
+      <thead>
+        <th>ID</th>
+        <th>ProjectID</th>
+        <th>Project Name</th>
+        <th>Date of Start</th>
+        <th>Team Size</th>
+        <th>Action</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let project of projects; let i=index">
+          <td>{{project.id}}</td>
+          <td>{{project.projectID}}</td>
+          <td>{{project.projectName}}</td>
+          <td>{{project.dateOfStart}}</td>
+          <td>{{project.teamSize}}</td>
+         <td>
+          <button class="btn btn-info"(click)="onEditClick($event,i)"data-toggle="modal"data-target=#editModal>PATCH</button>
+          <button class="btn btn-info"(click)="onDeleteClick($event,i)">DELET</button>
+        </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="container">
+  <h2>POST DATA</h2>
+  <form> 
+    <div class="form-group row">
+      <label for="txtEditid" class="col-sm-4 col-form-label">ID</label>
+      <div class="col-sm-8">
+          <input type="number" id="txtEditid" class="form-control-plain-text" style="width: 100px" placeholder="Project ID" name="id"[(ngModel)]="newProject.id"/>
+      </div>
+  </div> 
+      <div class="form-group row">
+          <label for="txtEditProjectID" class="col-sm-4 col-form-label">Project ID</label>
+          <div class="col-sm-8">
+              <input type="number" id="txtEditProjectID" class="form-control-plain-text" style="width: 100px" placeholder="Project ID" name="ProjectID"[(ngModel)]="newProject.projectID"/>
+          </div>
+      </div>
+      <div class="form-group row">
+          <label for="txtEditProjectName" class="col-sm-4 col-form-label">Project Name</label>
+          <div class="col-sm-8">
+              <input type="text" id="txtEditProjectName" class="form-control" placeholder="Project Name" name="ProjectName" [(ngModel)]="newProject.projectName"/>
+          </div>
+      </div>
+      <div class="form-group row">
+          <label for="txtEditDateOfStart" class="col-sm-4 col-form-label">Date of Start</label>
+          <div class="col-sm-8">
+              <input type="date" id="txtEditDateOfStart" class="form-control" style="width: 150px" placeholder="Date of Start" name="DateOfStart"[(ngModel)]="newProject.dateOfStart"/>
+          </div>
+      </div>
+      <div class="form-group row">
+          <label for="txtEditTeamSize" class="col-sm-4 col-form-label">Team Size</label>
+          <div class="col-sm-8">
+              <input type="number" id="txtEditTeamSize" class="form-control" style="width: 150px" placeholder="Team Size" name="TeamSize"[(ngModel)]="newProject.teamSize"/>
+            </div>
+          </div>
+      <div class="form-group row">
+          <div class="col-sm-8 offset-sm-4">
+              <button class="btn btn-warning">Cancel</button>
+              <button class="btn btn-success"(click)="onSaveClick()">POST</button>
+          </div>
+      </div>
+  </form>
+</div>
+
+<div class="container">
+  <h2>Patch Project</h2>
+  <form> 
+    <div class="form-group row">
+      <label for="txtEditid" class="col-sm-4 col-form-label">ID</label>
+      <div class="col-sm-8">
+          <input type="number" id="txtEditid" class="form-control-plain-text" style="width: 100px" placeholder="Project ID" name="id"[(ngModel)]="editProject.id"/>
+      </div>
+  </div> 
+      <div class="form-group row">
+          <label for="txtEditProjectID" class="col-sm-4 col-form-label">Project ID</label>
+          <div class="col-sm-8">
+              <input type="number" id="txtEditProjectID" class="form-control-plain-text" style="width: 100px" placeholder="Project ID" name="ProjectID"[(ngModel)]="editProject.projectID"/>
+          </div>
+      </div>
+      <div class="form-group row">
+          <label for="txtEditProjectName" class="col-sm-4 col-form-label">Project Name</label>
+          <div class="col-sm-8">
+              <input type="text" id="txtEditProjectName" class="form-control" placeholder="Project Name" name="ProjectName" [(ngModel)]="editProject.projectName"/>
+          </div>
+      </div>
+      <div class="form-group row">
+          <label for="txtEditDateOfStart" class="col-sm-4 col-form-label">Date of Start</label>
+          <div class="col-sm-8">
+              <input type="date" id="txtEditDateOfStart" class="form-control" style="width: 150px" placeholder="Date of Start" name="DateOfStart"[(ngModel)]="editProject.dateOfStart"/>
+          </div>
+      </div>
+      <div class="form-group row">
+          <label for="txtEditTeamSize" class="col-sm-4 col-form-label">Team Size</label>
+          <div class="col-sm-8">
+              <input type="number" id="txtEditTeamSize" class="form-control" style="width: 150px" placeholder="Team Size" name="TeamSize"[(ngModel)]="editProject.teamSize"/>
+            </div>
+          </div>
+      <div class="form-group row">
+          <div class="col-sm-8 offset-sm-4">
+              <button class="btn btn-warning">Cancel</button>
+              <button class="btn btn-success"(click)="onUpdateClick(editProject.id)">PATCH</button>
+          </div>
+      </div>
+  </form>
+</div>
+
+<div class="container">
+  <h2>Delete Project</h2>
+  <form> 
+    <div class="form-group row">
+      <label for="txtEditid" class="col-sm-4 col-form-label">ID</label>
+      <div class="col-sm-8">
+          <input type="number" id="txtEditid" class="form-control-plain-text" style="width: 100px" placeholder="Project ID" name="id"[(ngModel)]="deleteProject.id"/>
+      </div>
+  </div> 
+      <div class="form-group row">
+          <label for="txtEditProjectID" class="col-sm-4 col-form-label">Project ID</label>
+          <div class="col-sm-8">
+              <input type="number" id="txtEditProjectID" class="form-control-plain-text" style="width: 100px" placeholder="Project ID" name="ProjectID"[(ngModel)]="deleteProject.projectID"/>
+          </div>
+      </div>
+      <div class="form-group row">
+          <label for="txtEditProjectName" class="col-sm-4 col-form-label">Project Name</label>
+          <div class="col-sm-8">
+              <input type="text" id="txtEditProjectName" class="form-control" placeholder="Project Name" name="ProjectName" [(ngModel)]="deleteProject.projectName"/>
+          </div>
+      </div>
+      <div class="form-group row">
+          <label for="txtEditDateOfStart" class="col-sm-4 col-form-label">Date of Start</label>
+          <div class="col-sm-8">
+              <input type="date" id="txtEditDateOfStart" class="form-control" style="width: 150px" placeholder="Date of Start" name="DateOfStart"[(ngModel)]="deleteProject.dateOfStart"/>
+          </div>
+      </div>
+      <div class="form-group row">
+          <label for="txtEditTeamSize" class="col-sm-4 col-form-label">Team Size</label>
+          <div class="col-sm-8">
+              <input type="number" id="txtEditTeamSize" class="form-control" style="width: 150px" placeholder="Team Size" name="TeamSize"[(ngModel)]="deleteProject.teamSize"/>
+            </div>
+          </div>
+      <div class="form-group row">
+          <div class="col-sm-8 offset-sm-4">
+              <button class="btn btn-warning">Cancel</button>
+              <button class="btn btn-success"(click)="onDeleteConfirmClick(deleteProject.id)">Delete</button>
+          </div>
+      </div>
+  </form>
+</div>
